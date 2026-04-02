@@ -1,0 +1,51 @@
+" indentacion
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set showmatch
+
+" tema
+set termguicolors
+syntax on
+set background=dark
+colorscheme retrobox
+" linea
+set number
+set relativenumber
+
+" key bindings
+let mapleader=" "
+
+noremap <leader>x LspDocumentDiagnostics
+noremap <leader>e Ex
+
+" auto pairs
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap { {}<Left>
+inoremap " ""<Left>
+inoremap ' ''<Left>
+
+" Plugins
+
+call plug#begin('~/.vim/plugged')
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+call plug#end()
+
+" formatting
+augroup markdown_format
+  autocmd!
+  autocmd FileType markdown setlocal wrap linebreak breakindent
+augroup END
+
+" autocompletado
+set omnifunc=lsp#complete
+
+" Netrw
+let g:netrw_keepdir = 0 " seguir navegacion como cwd
+let g:netrw_banner = 0  " quitar banner
+let g:netrw_sort_by = "time" 
+let g:netrw_sort_direction = "reverse" " newest first
+let g:netrw_liststyle = 1

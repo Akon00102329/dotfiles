@@ -1,0 +1,12 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+$HOME/.local/bin/handle-screen & 
+/usr/bin/dunst & 
+
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a "*:qutebrowser" desktop=^1 follow=on state=fullscreen
+bspc rule -a "*:Alacritty" desktop=^2 follow=on state=fullscreen

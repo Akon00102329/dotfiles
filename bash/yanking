@@ -1,0 +1,8 @@
+# yank last on history
+yin() {
+  "fc -ln -1 | xclip -selection clipboard" 
+}
+# para copiar el output de la orden
+yout() {
+ "$@" 2>&1 | tee /tmp/last | xclip -selection clipboard
+}
