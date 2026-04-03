@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+tmpfile=$(mktemp /tmp/captura-XXXXXX.png)
+
+tipo=$(echo -e "area\npantalla" | dmenu )
+
+[[ $tipo == "pantalla" ]] && { sleep 1 ; scrot -o "$tmpfile" ;} 
+[[ $tipo == "area" ]] && scrot -s -o "$tmpfile"
+
+if [ -n "$tipo"]; then
+  accion=$(echo -e "copiar\nguardar" | dmenu )
+  [[ $accion == "copiar" ]] && { xclip -selection clipboard -t image/png -i "$tmpfile"}
+  [[ $accion == "guardar" ]] && { mv "$tmpfile" "$HOME/pictures/$(date +'%Y-%m-%d_%H_%M_%S').png"}
+fi

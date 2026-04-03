@@ -2,7 +2,7 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-$HOME/.local/bin/handle-screen & 
+$HOME/.config/scripts/handle-screen & 
 /usr/bin/dunst & 
 
 bspc config borderless_monocle   true

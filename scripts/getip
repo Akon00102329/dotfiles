@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+ip=$(ip addr show wlp7s0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+echo $ip

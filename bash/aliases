@@ -1,5 +1,3 @@
 alias ls='ls --color=auto --group-directories-first'
 alias jot="vim ~/documentation/vault/$(date +%Y%m%d).md"
-alias sc="vim ~/.local/bin/"
 alias conf="vim ~/.config/"
-alias td="vim ~/documentation/todo.md"
