@@ -1,6 +1,6 @@
 # yank last on history
 yin() {
-  "fc -ln -1 | xclip -selection clipboard" 
+  fc -ln -1 | xclip -selection clipboard
 }
 # para copiar el output de la orden
 yout() {
