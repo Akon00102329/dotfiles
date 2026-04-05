@@ -2,7 +2,7 @@
 
 LOG="/tmp/handle-screen.log"
 # localizar las pantallas conectadas
-logger start
+logger --start
 screens=($(xrandr --query | grep " connected" | awk '{print $1}'))
 
 logger "screens ${screens}"

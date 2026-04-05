@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+LOGDIR="$HOME/.local/log"
+
+mkdir -p $LOGDIR
+
+logging(){
+
+  if [[ "$#" -eq 0 || "$1" == "-h" || "$1" == "--help" ]]; then
+    cat << 'EOF'
+  logger [-s,--start|-e,--error|-w,--warning|-h|--help|-f, --finish] [STRING]
+    usage
+      logger -s
+      logger "hello world"
+      logger -e "some pesky error"
+    options
+      -e, --error     formatea el mensaje como error
+      -f, --finish    crea el mensaje de salida de ejecucion
+      -h, --help      muestra los comandos permitidos 
+      -s, --start     crea el mensaje de inicio de ejecucion, debe usarse antes de loggear
+      -w, --warning   formatea el mensaje como warning
+EOF
+    return 0
+  fi
+
+  local name=$(echo $(tr '\0' ' ' < "/proc/$PPID/cmdline")| awk '{print $2}')
+  local file="$HOME/.local/log/${name:2}.log"
+
+  case "$1" in
+    -s|--start)
+      echo "---start $(date) ---" >> "$file"
+      ;;
+    -e|--error)
+      echo "\033[31m$(date +%T) ERROR:\033[0m $2" >> "$file"
+      ;;
+     -w|--warning)
+      echo "\033[33m$(date +%T) WARN:\033[0m $2" >> "$file"
+      ;;
+    -f|--finish)
+      echo "--- finish $(date) ---" >> "$file"
+      ;;
+    *)
+      echo "$(date +%T) INFO: $*" >> "$file"
+    ;;
+  esac
+}
+
+logging "$@"
