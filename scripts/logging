@@ -24,7 +24,7 @@ EOF
   fi
 
   local name=$(echo $(tr '\0' ' ' < "/proc/$PPID/cmdline")| awk '{print $2}')
-  local file="$HOME/.local/log/${name:2}.log"
+  local file="$HOME/.local/log/$(basename $name).log"
 
   case "$1" in
     -s|--start)
