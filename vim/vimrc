@@ -18,6 +18,7 @@ set relativenumber
 let mapleader=" "
 
 noremap <leader>x :LspDocumentDiagnostics<CR>
+noremap <leader>rn :LspRename<CR>
 noremap <leader>e :Rex<CR>
 
 " auto pairs
