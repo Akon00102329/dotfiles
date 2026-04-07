@@ -14,12 +14,14 @@ bspc monitor -r
 if [[ ${#screens[@]} -eq 1 ]] ; then
   # solo hay una pantalla
   logging "there is only one monitor"
-  bspc monitor -d I II
+  bspc monitor -d I II III
 else
 
  # hay mas de una pantalla (de momento solo hacemos handle de dos, y asumimos que la segunda esta a la izquierda)
  logging "there is more than one monitor (${#screens[@]})" 
  xrandr --output "${screens[1]}" --left-of "${screens[0]}" --primary 
- bspc monitor ${screens[1]} -d I
- bspc monitor ${screens[0]} -d II
+ bspc monitor ${screens[0]} -d III
+ bspc monitor ${screens[1]} -d I II
 fi
+
+bspc wm -o

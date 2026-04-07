@@ -3,10 +3,10 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 $HOME/.config/scripts/handle-screen & 
-/usr/bin/dunst & 
 
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc rule -a "*:qutebrowser" desktop=^1 follow=on state=fullscreen
-bspc rule -a "*:Alacritty" desktop=^2 follow=on state=fullscreen
+bspc rule -a "*:Alacritty" desktop=^3 follow=on state=fullscreen
+bspc rule -a "*:mpv" desktop=^2 follow=false state=fullscreen
