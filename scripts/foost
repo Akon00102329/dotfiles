@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# (FO)cus (O)r (ST)art 
+
+[[ "$#" -eq 0 ]] && { echo "falta el programa, por ejemplo: foost qutebrowser"; exit 1; }
+
+for node in $(bspc query -N -n .window); do 
+  name=$(bspc query -T -n $node | jq -r '.client.className')
+  [[ "${name,,}" == "${1,,}" ]] && { bspc node "$node" -f; exit 0; } # ${var,,} para lowercase
+done
+
+exec "$1"

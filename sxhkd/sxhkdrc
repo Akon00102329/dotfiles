@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	alacritty
+	foost alacritty
 
 # program launcher
 Menu
@@ -12,7 +12,7 @@ Menu
 
 # browser
 super + b
-  qutebrowser
+  foost qutebrowser
 
 # make sxhkd reload its configuration files:
 super + Escape
