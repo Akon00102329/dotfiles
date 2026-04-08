@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+
+#
+# clipboard functions
+#
+
 # yank last on history
 yin() {
   fc -ln -1 | xclip -selection clipboard
@@ -6,3 +12,11 @@ yin() {
 yout() {
  "$@" 2>&1 | tee /tmp/last | xclip -selection clipboard
 }
+
+
+#
+# colored output
+#
+ccat() {
+    echo -e "$(cat $*)"
+  }
