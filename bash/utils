@@ -20,3 +20,11 @@ yout() {
 ccat() {
     echo -e "$(cat $*)"
   }
+
+#
+# documentation (for example `docs k8s`)
+#
+docs(){
+  tool=$1
+  cat $HOME/documentation/"$tool" | fzf | xargs -I {} sh -c 'readonly {} | w3m -T text/html -dump | less'
+}
