@@ -10,5 +10,5 @@ c.url.searchengines = {
     "ws": "https://es.wikipedia.org/wiki/{}",
     "b": "https://www.bing.com/images/search?q={}",
     }
-c.downloads.location.directory = "~/downloads"
+c.downloads.location.directory = "/tmp"
 c.editor.command = ["alacritty", "-e", "vim", "{file}"]
