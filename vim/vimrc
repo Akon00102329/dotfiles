@@ -6,11 +6,11 @@ set smartindent
 set showmatch
 
 " tema
-set termguicolors
-syntax on
-set background=dark
-colorscheme retrobox
+"set termguicolors
+"set background=dark
+"colorscheme retrobox
 " linea
+syntax on
 set number
 set relativenumber
 
@@ -19,7 +19,7 @@ let mapleader=" "
 
 noremap <leader>x :LspDocumentDiagnostics<CR>
 noremap <leader>rn :LspRename<CR>
-noremap <leader>e :Rex<CR>
+noremap <leader>e :Ex<CR>
 
 " auto pairs
 inoremap ( ()<Left>
@@ -53,3 +53,18 @@ let g:netrw_liststyle = 1
 let g:netrw_winsize = 30
 let g:netrw_alto = 1 " split debajo
 let g:netrw_home = "~/.config/vim/bookmarks"
+
+" vimwiki
+set nocompatible
+filetype plugin on
+let g:vimwiki_list = [{ 'syntax': 'markdown', 'ext': 'md'},
+      \ {'syntax': 'markdown', 'ext': 'md', 'path': '~/vimwiki/blog', 'path_html': '~/website/'}, 
+      \ {'syntax': 'markdown', 'ext': 'md', 'path': '~/vimwiki/devops'}]
+nnoremap <leader>wf :call WikiFind()<CR>
+  function! WikiFind()
+    let l:term = input('Search:')
+    if l:term == ''
+      return
+    endif
+    execute 'VWS /' . escape(l:term,'/\') . '/'
+  endfunction
