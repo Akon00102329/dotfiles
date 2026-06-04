@@ -1,12 +1,20 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-$HOME/.config/scripts/handle-screen & 
+
+screens=($(xrandr | grep " connected" | awk '{print $1}'))
+
+if [[ ${#screens[@]} -eq 1 ]] ; then
+  bspc monitor -d I II III
+else
+ bspc monitor ${screens[0]} -d L1
+ bspc monitor ${screens[1]} -d R1 R2
+fi
 
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a "*:qutebrowser" desktop=^1 follow=on state=fullscreen
-bspc rule -a "*:Alacritty" desktop=^3 follow=on state=fullscreen
-bspc rule -a "*:mpv" desktop=^2 follow=false state=fullscreen
+bspc rule -a "*:qutebrowser" desktop=^2 follow=on state=fullscreen
+bspc rule -a "*:Alacritty" desktop=^1 follow=on state=fullscreen
+bspc rule -a "*:mpv" desktop=^3 follow=false state=fullscreen
