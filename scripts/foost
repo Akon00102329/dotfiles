@@ -8,4 +8,4 @@ for node in $(bspc query -N -n .window); do
   [[ "${name,,}" == "${1,,}" ]] && { bspc node "$node" -f; exit 0; } # ${var,,} para lowercase
 done
 
-exec "$1"
+exec "$@"
